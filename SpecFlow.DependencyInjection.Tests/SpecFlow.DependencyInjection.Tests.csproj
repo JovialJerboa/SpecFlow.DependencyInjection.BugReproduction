@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="5.1.0" />
     <PackageReference Include="SpecFlow" Version="4.*-*" />
     <PackageReference Include="SpecFlow.xUnit" Version="4.*-*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />

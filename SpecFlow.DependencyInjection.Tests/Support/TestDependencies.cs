@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SolidToken.SpecFlow.DependencyInjection.Tests.Steps;
 
 namespace SolidToken.SpecFlow.DependencyInjection.Tests.Support
@@ -18,6 +19,16 @@ namespace SolidToken.SpecFlow.DependencyInjection.Tests.Support
 
             // Calculator
             services.AddScoped<ICalculator, Calculator>();
+            
+            // NB: This breaks when parallelizeTestCollections = true (xunit.runner.json)
+            //      When debugging, the error does not occur, presumably because the tests are not running in parallel
+            var configuration = new ConfigurationBuilder();
+            configuration.AddSystemsManager(c =>
+            {
+                c.Path = "path";
+                c.Optional = true;
+            });
+            configuration.Build();
 
             return services;
         }
